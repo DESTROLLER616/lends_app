@@ -1,0 +1,36 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>test</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="container">
+      <h2>Categories</h2>
+
+      <div class="sub-container">
+
+        <form>
+
+          <ion-item class="form-part">
+            <ion-label position="floating">Category name</ion-label>
+            <ion-input type="text" color="primary" placeholder="Enter category name"></ion-input>
+            <ion-note color="tertiary">Enter a valid category</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-textarea placeholder="Category description"></ion-textarea>
+          </ion-item>
+
+          <button class="save-button">Save</button>
+
+        </form>
+        
+      </div>
+    </div>
+
+    <section>
+      <app-table-category></app-table-category>
+    </section>
+  </ion-content>
