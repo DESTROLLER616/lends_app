@@ -13,8 +13,8 @@ export class CategoriesService {
 
   constructor(private http:HttpClient) { }
 
-  getCategories(page = 0){
-    return this.http.get<Categories[]>(`${this.URL_BASE}/?$skip=${page}`)
+  getCategories(){
+    return this.http.get<Categories[]>(`${this.URL_BASE}`)
   }
 
   createCategory(category: Categories){

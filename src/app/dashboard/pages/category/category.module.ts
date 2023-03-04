@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -21,7 +21,9 @@ import { CookieService } from 'ngx-cookie-service';
     IonicModule,
     CategoryPageRoutingModule,
     DashboardPageRoutingModule,
-    DashboardPageModule
+    DashboardPageModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [CategoryPage, TableCategoryComponent],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true}, CookieService]

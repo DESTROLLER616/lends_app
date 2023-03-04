@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { Categories } from 'src/models/categories.interface';
+import { CategoriesService } from 'src/services/categories/categories.service';
 
 @Component({
   selector: 'app-table-category',
@@ -7,8 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableCategoryComponent  implements OnInit {
 
-  constructor() { }
+  constructor(public categoryService: CategoriesService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCategories()
+  }
+
+  categories: Categories[] = []
+
+  getCategories() {
+    this.categoryService.getCategories()
+    .pipe(
+      take(1)
+    ).subscribe( (res:any) => {
+      console.log(res);
+      const {data, total} = res
+
+      this.categories = [...data]
+
+      console.log(total);
+      
+    }, 
+    (err) => console.log('error')
+     )
+  }
 
 }

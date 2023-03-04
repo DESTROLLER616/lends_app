@@ -13,7 +13,7 @@ export class TokenService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const headers = new HttpHeaders({
-      'Authorization': `${this.cookieService.get('token')}`
+      'Authorization': `bearer ${this.cookieService.get('token')}`
     })
 
     const reqClone = req.clone({

@@ -11,16 +11,16 @@
 
       <div class="sub-container">
 
-        <form>
+        <form #categoryForm="ngForm" (ngSubmit)="addCategory(categoryForm)">
 
           <ion-item class="form-part">
-            <ion-label position="floating">Category name</ion-label>
-            <ion-input type="text" color="primary" placeholder="Enter category name"></ion-input>
+            <ion-label color="" position="floating">Category name</ion-label>
+            <ion-input type="text" color="primary" placeholder="Enter category name" [(ngModel)]="category.name" name="name"></ion-input>
             <ion-note color="tertiary">Enter a valid category</ion-note>
           </ion-item>
 
           <ion-item>
-            <ion-textarea placeholder="Category description"></ion-textarea>
+            <ion-textarea color="primary" placeholder="Category description" [(ngModel)]="category.description" name="description"></ion-textarea>
           </ion-item>
 
           <button class="save-button">Save</button>

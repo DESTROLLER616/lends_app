@@ -2,16 +2,16 @@
 
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Operations</th>
+      <th class="r1">Name</th>
+      <th class="r2">Description</th>
+      <th class="r3">Operations</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <th>Example</th>
-      <th>Example</th>
+    <tr *ngFor="let category of categories">
+      <th>{{ category.name }}</th>
+      <th>{{ category.description }}</th>
       <th>Example</th>
     </tr>
   </tbody>

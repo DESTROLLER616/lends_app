@@ -8,6 +8,8 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 import { SideMeenuComponent } from './shared/side-meenu/side-meenu.component';
+import { TokenService } from 'src/services/interceptors/token/token.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { SideMeenuComponent } from './shared/side-meenu/side-meenu.component';
     IonicModule,
     DashboardPageRoutingModule,
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage],
+  providers: []
 })
 export class DashboardPageModule {}
