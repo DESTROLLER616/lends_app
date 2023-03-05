@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +10,53 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  constructor(private alertController: AlertController, private router: Router, private cookieService: CookieService) { }
+
+  exit = false
 
   ngOnInit() {
   }
 
+  public pages = [
+    { path: 'Welcome', url: 'welcome', icon: 'home' },
+    { path: 'category', url: 'category', icon: 'reorder-four' }
+  ]
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Are you sure to want to exit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            
+          },
+        },
+        {
+          text: 'Exit',
+          role: 'confirm',
+          handler: () => {
+            this.cookieService.deleteAll('token')
+            this.router.navigate(['home'])
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async logout(){
+
+    await this.presentAlert()
+
+    if(this.exit){
+       return console.log('saliendo');
+    }
+
+    return console.log('aqui');
+
+  }
 
 }

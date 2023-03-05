@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DashboardGuardGuard } from 'src/services/guards/dashboard-guard.guard';
 
 import { DashboardPage } from './dashboard.page';
 
@@ -7,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardPage,
+    canActivate: [DashboardGuardGuard],
     children: [{
       path: 'category',
       loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)

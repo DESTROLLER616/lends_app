@@ -14,9 +14,9 @@
         <form #categoryForm="ngForm" (ngSubmit)="addCategory(categoryForm)">
 
           <ion-item class="form-part">
-            <ion-label color="" position="floating">Category name</ion-label>
-            <ion-input type="text" color="primary" placeholder="Enter category name" [(ngModel)]="category.name" name="name"></ion-input>
-            <ion-note color="tertiary">Enter a valid category</ion-note>
+            <ion-label color="primary" position="floating">Category name</ion-label>
+            <ion-input type="text" color="primary" placeholder="Enter category name" [(ngModel)]="category.name" name="name" require minlength="4"></ion-input>
+            <!-- <ion-note color="tertiary" *ngIf="category.name.valid">Enter a category</ion-note> -->
           </ion-item>
 
           <ion-item>

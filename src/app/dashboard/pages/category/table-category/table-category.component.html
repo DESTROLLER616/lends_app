@@ -12,7 +12,15 @@
     <tr *ngFor="let category of categories">
       <th>{{ category.name }}</th>
       <th>{{ category.description }}</th>
-      <th>Example</th>
+      <th>
+        <ion-button class="btn-op" color="secondary">
+          <ion-icon color="dark" size="large" slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+
+        <ion-button class="btn-op" color="danger">
+          <ion-icon color="dark" size="large" slot="icon-only" name="close-circle"></ion-icon>
+        </ion-button>
+      </th>
     </tr>
   </tbody>
 
