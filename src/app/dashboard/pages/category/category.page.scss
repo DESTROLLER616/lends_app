@@ -1,5 +1,6 @@
 .container {
     width: 90%;
+    max-width: 500px;
     border: #f7f7f7 solid 1px;
     margin: 20px auto 0 auto;
     padding-bottom: 20px;
@@ -39,4 +40,14 @@ form {
 section {
     width: 90%;
     margin: auto;
+}
+
+@media only screen and (min-width: 1160px) {
+    // .container {
+    //     margin: 0 30px;
+    // }
+
+    // .sub-container {
+    //     margin: 70px 0;
+    // }
 }

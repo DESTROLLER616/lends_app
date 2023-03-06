@@ -45,3 +45,25 @@ tr, th {
 thead {
     height: 20px;
 }
+
+@media only screen and (min-width: 800px) {
+    table{
+        width: 70%;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    article {
+        margin: 30px auto;
+        width: 50%;
+        border-radius: 5px;
+    }
+
+    .btn-op {
+        width: 60px;
+    }
+
+    .delete {
+        margin-left: 15px;
+    }
+}
