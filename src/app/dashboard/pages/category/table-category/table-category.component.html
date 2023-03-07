@@ -1,11 +1,11 @@
 <article>
-  <ion-button color="secondary" (click)="numPage(-1)">
+  <ion-button color="secondary" (click)="numPage(-1)" [disabled]="isMinusActivate">
     <ion-icon slot="icon-only" name="remove"></ion-icon>
   </ion-button>
   
   <p>{{ page }}</p>
   
-  <ion-button color="danger" (click)="numPage(1)">
+  <ion-button color="danger" (click)="numPage(1)" [disabled]="isAddActivate">
     <ion-icon slot="icon-only" name="add"></ion-icon>
   </ion-button>
 </article>

@@ -37,8 +37,12 @@ export class DashboardPage implements OnInit {
           text: 'Exit',
           role: 'confirm',
           handler: () => {
-            this.cookieService.deleteAll('token')
-            this.router.navigate(['home'])
+            this.cookieService.delete('token')
+            this.cookieService.delete('id')
+            this.cookieService.delete('name')
+            this.cookieService.delete('email')
+            this.cookieService.delete('telephone')
+            this.router.navigate([''])
           },
         },
       ],
@@ -51,11 +55,11 @@ export class DashboardPage implements OnInit {
 
     await this.presentAlert()
 
-    if(this.exit){
-       return console.log('saliendo');
-    }
+    // if(this.exit){
+    //    return console.log('saliendo');
+    // }
 
-    return console.log('aqui');
+    // return console.log('aqui');
 
   }
 

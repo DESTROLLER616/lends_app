@@ -12,6 +12,8 @@ export class TableCategoryComponent  implements OnInit {
 
   page:number = 0
   max = 0
+  isAddActivate: boolean = false
+  isMinusActivate: boolean = true
 
   constructor(public categoryService: CategoriesService) { }
 
@@ -25,14 +27,24 @@ export class TableCategoryComponent  implements OnInit {
     let num = this.page += page
 
     if(num < 0){
-      this.page = num
+      console.log('minus');
+      
+      this.page = 0
       this.getCategories(num)
+      this.isMinusActivate = true
     }
 
-    if(num > this.max) {
+    if(num >= this.max) {
+      console.log('max');
+      
       this.page = this.max
-      this.getCategories(num)
+      this.isAddActivate = true
+      this.getCategories(this.page)
     }
+
+    this.isAddActivate = false
+
+    this.isMinusActivate = false
 
     return this.getCategories(num)
   }
@@ -43,13 +55,16 @@ export class TableCategoryComponent  implements OnInit {
       take(1)
     ).subscribe( (res:any) => {
       console.log(res);
-      const {data, total} = res
+      const {data, total, limit} = res
 
       this.categories = [...data]
 
       console.log(total);
 
-      this.max = total - 10
+      this.max = total - limit
+
+      console.log(this.max);
+      
       
     }, 
     (err) => console.log('error')
