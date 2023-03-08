@@ -25,11 +25,11 @@
       <th>{{ category.name }}</th>
       <th>{{ category.description }}</th>
       <th>
-        <ion-button class="btn-op create" color="secondary">
+        <ion-button class="btn-op create" color="secondary" (click)="editCategory(category._id, category.name, category.description)">
           <ion-icon color="dark" size="large" slot="icon-only" name="create"></ion-icon>
         </ion-button>
 
-        <ion-button class="btn-op delete" color="danger">
+        <ion-button class="btn-op delete" color="danger" (click)="deleteCategory(category._id, category.name)">
           <ion-icon color="dark" size="large" slot="icon-only" name="close-circle"></ion-icon>
         </ion-button>
       </th>

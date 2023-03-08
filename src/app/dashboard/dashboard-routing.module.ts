@@ -24,6 +24,19 @@ const routes: Routes = [
     }]
   },
   // {
+  //   path: 'category',
+  //   loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  // },
+  // {
+  //   path: 'welcome',
+  //   loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule),
+  // },
+  {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'prefix'
+  }
+  // {
   //   path: 'test',
   //   loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
   // },

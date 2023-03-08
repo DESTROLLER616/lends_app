@@ -18,7 +18,7 @@ export class DashboardPage implements OnInit {
   }
 
   public pages = [
-    { path: 'Welcome', url: 'welcome', icon: 'home' },
+    { path: 'Welcome', url: '', icon: 'home' },
     { path: 'category', url: 'category', icon: 'reorder-four' }
   ]
 

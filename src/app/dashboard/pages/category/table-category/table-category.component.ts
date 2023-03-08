@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { Categories } from 'src/models/categories.interface';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CategoriesService } from 'src/services/categories/categories.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class TableCategoryComponent  implements OnInit {
   isAddActivate: boolean = false
   isMinusActivate: boolean = true
 
-  constructor(public categoryService: CategoriesService) { }
+  constructor(public categoryService: CategoriesService, private categoryAlerts: AlertsService) { }
 
   ngOnInit() {
     this.getCategories()
@@ -61,7 +62,9 @@ export class TableCategoryComponent  implements OnInit {
 
       console.log(total);
 
-      this.max = total - limit
+      if(total > 10){
+        this.max = total - 10
+      }
 
       console.log(this.max);
       
@@ -69,6 +72,14 @@ export class TableCategoryComponent  implements OnInit {
     }, 
     (err) => console.log('error')
      )
+  }
+
+  deleteCategory(id: any, name: string) {
+    this.categoryAlerts.deleteCategory(name, id)
+  }
+
+  editCategory(id: any, name: string, description: string){
+    this.categoryAlerts.editCategory(id, name, description)
   }
 
 }
