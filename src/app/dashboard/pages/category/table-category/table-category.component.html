@@ -37,3 +37,32 @@
   </tbody>
 
 </table>
+
+<div *ngIf="isHidden" class="update-box">
+  <div class="title">
+    <h3>Update</h3>
+    <button class="close-button" (click)="closeUpdate()">X</button>
+  </div>
+
+  <div class="sub-box">
+    <form #categoryForm="ngForm" (ngSubmit)="updateCategory(categoryForm)">
+
+      <input type="hidden" name="_id" [(ngModel)]="category._id">
+
+      <ion-item class="form-part">
+        <ion-label color="primary" position="floating">Category name</ion-label>
+        <ion-input type="text" color="primary" placeholder="Enter category name" [(ngModel)]="category.name" name="name" require minlength="4"></ion-input>
+        <!-- <ion-note color="tertiary" *ngIf="category.name.valid">Enter a category</ion-note> -->
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea color="primary" placeholder="Category description" [(ngModel)]="category.description" name="description"></ion-textarea>
+      </ion-item>
+
+      <button class="save-button">Update</button>
+    
+    </form>
+
+  </div>
+
+</div>

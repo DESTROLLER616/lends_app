@@ -1,55 +1,105 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { CategoriesService } from '../categories/categories.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertsService {
+  create(arg0: { header: string; buttons: { text: string; role: string; handler: () => void; }[]; }) {
+    throw new Error('Method not implemented.');
+  }
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private categoriesService: CategoriesService) { }
 
   async deleteCategory(name: string, id:string){
     const alert = await this.alertController.create({
-      header: `are you sure want to delete ${name}`,
+      cssClass: 'alert-prompt',
+      header: 'Prompt!',
+      inputs: [
+        {
+          name: 'name1',
+          type: 'text',
+          placeholder: 'Placeholder 1'
+        },
+        {
+          name: 'name2',
+          type: 'text',
+          id: 'name2-id',
+          value: 'hello',
+          placeholder: 'Placeholder 2'
+        },
+        // multiline input.
+        {
+          name: 'paragraph',
+          id: 'paragraph',
+          type: 'textarea',
+          placeholder: 'Placeholder 3'
+        },
+        {
+          name: 'name3',
+          value: 'http://ionicframework.com',
+          type: 'url',
+          placeholder: 'Favorite site ever'
+        },
+        // input date with min & max
+        {
+          name: 'name4',
+          type: 'date',
+          min: '2017-03-01',
+          max: '2018-01-12'
+        },
+        // input date without min nor max
+        {
+          name: 'name5',
+          type: 'date'
+        },
+        {
+          name: 'name6',
+          type: 'number',
+          min: -5,
+          max: 10
+        },
+        {
+          name: 'name7',
+          type: 'number'
+        },
+        {
+          name: 'name8',
+          type: 'password',
+          placeholder: 'Advanced Attributes',
+          cssClass: 'specialClass',
+          attributes: {
+            maxlength: 4,
+            inputmode: 'decimal'
+          }
+        }
+      ],
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
+          cssClass: 'secondary',
           handler: () => {
-            return false
-          },
-        },
-        {
-          text: 'OK',
-          role: 'confirm',
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
           handler: () => {
-            return true
-          },
-        },
-      ],
+            console.log('Confirm Ok');
+          }
+        }
+      ]
     });
-
     await alert.present();
   }
 
-  async editCategory(id: any, name: string, description: string) {
+  async updateCategory() {
     const alert = await this.alertController.create({
-      header: 'Change any information',
+      header: 'Updated',
+      subHeader: 'Updated Category',
+      message: 'Category has been updated successfully!',
       buttons: ['OK'],
-      inputs: [
-        {
-          placeholder: 'name',
-          value: name,
-          attributes: {
-            minlength: 4,
-          },
-        },
-        {
-          placeholder: 'description',
-          type: 'textarea',
-          value: description
-        },
-      ],
     });
 
     await alert.present();

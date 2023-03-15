@@ -19,7 +19,8 @@ export class DashboardPage implements OnInit {
 
   public pages = [
     { path: 'Welcome', url: '', icon: 'home' },
-    { path: 'category', url: 'category', icon: 'reorder-four' }
+    { path: 'category', url: 'category', icon: 'reorder-four' },
+    { path: 'sections', url: 'sections', icon: 'albums' }
   ]
 
   async presentAlert() {

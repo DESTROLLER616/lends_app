@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AlertController, AlertInput } from '@ionic/angular';
 import { take } from 'rxjs';
 import { Categories } from 'src/models/categories.interface';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -15,11 +17,19 @@ export class TableCategoryComponent  implements OnInit {
   max = 0
   isAddActivate: boolean = false
   isMinusActivate: boolean = true
+  isHidden: boolean = false
 
-  constructor(public categoryService: CategoriesService, private categoryAlerts: AlertsService) { }
+  constructor(public categoryService: CategoriesService, private categoryAlerts: AlertsService, private alertController: AlertController) { }
 
   ngOnInit() {
     this.getCategories()
+    this.isHidden = false
+  }
+
+  category: Categories = {
+    _id: '',
+    name: '',
+    description: ''
   }
 
   categories: Categories[] = []
@@ -36,7 +46,7 @@ export class TableCategoryComponent  implements OnInit {
     }
 
     if(num >= this.max) {
-      console.log('max');
+      // console.log('max');
       
       this.page = this.max
       this.isAddActivate = true
@@ -55,18 +65,20 @@ export class TableCategoryComponent  implements OnInit {
     .pipe(
       take(1)
     ).subscribe( (res:any) => {
-      console.log(res);
+      // console.log(res);
       const {data, total, limit} = res
 
       this.categories = [...data]
 
-      console.log(total);
+      // console.log(total);
 
       if(total > 10){
         this.max = total - 10
       }
 
-      console.log(this.max);
+      // console.log(this.max);
+
+      this.isHidden = false
       
       
     }, 
@@ -74,12 +86,72 @@ export class TableCategoryComponent  implements OnInit {
      )
   }
 
-  deleteCategory(id: any, name: string) {
-    this.categoryAlerts.deleteCategory(name, id)
+  async deleteCategory(id: any, name: string) {
+    const alert = await this.alertController.create({
+      header: `Are you sure want to delete ${name} category`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.categoryService.deleteCategory(id).subscribe(
+              (res) => {
+                this.getCategories()
+              },
+              (err) => {
+                console.log(`error: ${err}`);
+              }
+            )
+            this.getCategories()
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+
+    this.isHidden = false
   }
 
-  editCategory(id: any, name: string, description: string){
-    this.categoryAlerts.editCategory(id, name, description)
+  async editCategory(id: any, name: string, description: string){
+    this.isHidden = true
+
+    this.category = {
+      _id: id,
+      name,
+      description
+    }
   }
 
+  updateCategory(form: NgForm) {
+    this.categoryService.patchCategory(form.value).subscribe(
+      res => {
+        // console.log(res);
+        
+        this.getCategories()
+        this.isHidden = false
+        this.categoryAlerts.updateCategory()
+      },
+      err => {
+        console.log('error')
+      }
+    )
+  }
+
+  closeUpdate() {
+    this.isHidden = false
+
+    this.category = {
+      _id: '',
+      name: '',
+      description: ''
+    }
+  }
 }

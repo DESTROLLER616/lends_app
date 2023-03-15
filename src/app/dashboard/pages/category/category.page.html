@@ -13,6 +13,8 @@
 
         <form #categoryForm="ngForm" (ngSubmit)="addCategory(categoryForm)">
 
+          <!-- <input type="hidden" name="_id" [(ngModel)]="category._id"> -->
+
           <ion-item class="form-part">
             <ion-label color="primary" position="floating">Category name</ion-label>
             <ion-input type="text" color="primary" placeholder="Enter category name" [(ngModel)]="category.name" name="name" require minlength="4"></ion-input>
@@ -34,4 +36,6 @@
     <section>
       <app-table-category></app-table-category>
     </section>
+      
+      
   </ion-content>

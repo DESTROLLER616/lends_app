@@ -19,6 +19,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     DashboardPageRoutingModule,
   ],
   declarations: [DashboardPage],
-  providers: []
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true}]
 })
 export class DashboardPageModule {}

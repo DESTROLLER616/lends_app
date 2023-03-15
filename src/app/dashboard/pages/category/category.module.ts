@@ -23,7 +23,7 @@ import { CookieService } from 'ngx-cookie-service';
     DashboardPageRoutingModule,
     DashboardPageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [CategoryPage, TableCategoryComponent],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true}, CookieService]

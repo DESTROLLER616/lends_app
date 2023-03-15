@@ -21,6 +21,25 @@ export class CategoriesService {
     return this.http.post(this.URL_BASE, category)
   }
 
+  deleteCategory(id: String){
+    // console.log(`${this.URL_BASE}/${id}`);
+    
+    return this.http.delete(`${this.URL_BASE}/${id}`)
+    
+  }
+
+  patchCategory(category: Categories){
+    let cat = {
+      name: category.name,
+      description: category.description
+    }
+
+    // console.log(cat.description);
+    
+
+    return this.http.patch(`${this.URL_BASE}/${category._id}`, cat)
+  }
+
   pagination(page:number){
     return this.http.get<Categories[]>(`${this.URL_BASE}/?$skip=${page}`)
   }

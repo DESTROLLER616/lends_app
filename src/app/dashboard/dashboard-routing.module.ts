@@ -18,10 +18,14 @@ const routes: Routes = [
       loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule),
     },
     {
+      path: 'sections',
+      loadChildren: () => import('./pages/sections/sections.module').then( m => m.SectionsPageModule)
+    },
+    {
       path: '',
       redirectTo: 'welcome',
       pathMatch: 'full',
-    }]
+    },]
   },
   // {
   //   path: 'category',
@@ -35,7 +39,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'prefix'
-  }
+  },
   // {
   //   path: 'test',
   //   loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
