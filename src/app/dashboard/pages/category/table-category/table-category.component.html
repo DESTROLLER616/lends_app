@@ -8,6 +8,10 @@
   <ion-button color="danger" (click)="numPage(1)" [disabled]="isAddActivate">
     <ion-icon slot="icon-only" name="add"></ion-icon>
   </ion-button>
+
+  <ion-button color="success" slot="center" (click)="updateTable()">
+    <ion-icon name="refresh-outline"></ion-icon>
+  </ion-button>
 </article>
 
 <table>

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { take } from 'rxjs';
 import { Categories } from 'src/models/categories.interface';
 import { CategoriesService } from 'src/services/categories/categories.service';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-category',
@@ -21,8 +22,11 @@ export class CategoryPage implements OnInit {
   isAddActivate: boolean = false
   isMinusActivate: boolean = true
 
+  created: number = 0
+
   ngOnInit() {
     this.getCategories()
+    this.created = 5
   }
 
   category: Categories = {
@@ -52,6 +56,7 @@ export class CategoryPage implements OnInit {
           this.getCategories()
           this.cleanForm(form)
           this.presentAlert()
+          this.created++
         },
         err => console.log(this.category._id)
       )

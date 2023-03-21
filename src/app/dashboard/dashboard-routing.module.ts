@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'welcome',
-    pathMatch: 'prefix'
+    pathMatch: 'full'
   },
   // {
   //   path: 'test',

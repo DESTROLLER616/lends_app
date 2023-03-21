@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  category_url: 'https://lends-backend.onrender.com/categories',
+  login_url: 'https://lends-backend.onrender.com/authentication',
+  section_url: 'https://lends-backend.onrender.com/section'
 };
 
 /*

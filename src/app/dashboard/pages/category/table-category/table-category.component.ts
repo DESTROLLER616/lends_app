@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AlertController, AlertInput } from '@ionic/angular';
 import { take } from 'rxjs';
 import { Categories } from 'src/models/categories.interface';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CategoriesService } from 'src/services/categories/categories.service';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-table-category',
@@ -18,12 +19,15 @@ export class TableCategoryComponent  implements OnInit {
   isAddActivate: boolean = false
   isMinusActivate: boolean = true
   isHidden: boolean = false
+  isRefresh: boolean = false
+
+  @Input() created?: number
 
   constructor(public categoryService: CategoriesService, private categoryAlerts: AlertsService, private alertController: AlertController) { }
 
   ngOnInit() {
     this.getCategories()
-    this.isHidden = false
+    this.showRefresh()
   }
 
   category: Categories = {
@@ -153,5 +157,19 @@ export class TableCategoryComponent  implements OnInit {
       name: '',
       description: ''
     }
+  }
+
+  showRefresh(): void {
+    if(!this.created === undefined){
+      if(this.created == 0){
+        this.isRefresh = true
+      } else{
+        this.isRefresh = true
+      }
+    }
+  }
+
+  updateTable() {
+    this.getCategories()
   }
 }

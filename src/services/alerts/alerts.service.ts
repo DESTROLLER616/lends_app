@@ -104,4 +104,15 @@ export class AlertsService {
 
     await alert.present();
   }
+
+  async createSection() {
+    const alert = await this.alertController.create({
+      header: 'Created',
+      subHeader: 'Section created',
+      message: 'Section has been created, please refresh this page',
+      buttons: ['OK']
+    })
+
+    await alert.present();
+  }
 }

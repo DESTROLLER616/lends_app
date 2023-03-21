@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Login } from 'src/models/login.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,7 @@ import { Login } from 'src/models/login.interface';
 export class LogService {
   constructor(private http: HttpClient) { }
 
-  URL_LOGIN = 'https://lends-backend.onrender.com/authentication'
-
   authenticated(login: Login){
-    return this.http.post(this.URL_LOGIN, login)
+    return this.http.post(environment.login_url, login)
   }
 }

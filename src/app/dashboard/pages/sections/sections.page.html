@@ -5,5 +5,34 @@
 </ion-header>
 
 <ion-content>
+  <main>
+    <div class="container">
+      <h2>Sections</h2>
+
+      <section class="sub-container">
+        <form #sectionForm="ngForm" (ngSubmit)="addSection(sectionForm)">
+
+          <ion-item>
+            <ion-label position="floating" color="primary">Section name</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="section.title"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating" color="primary">Section url image</ion-label>
+            <ion-input type="text" name="url" [(ngModel)]="section.url" (keyup)="showImage(section.url)"></ion-input>
+          </ion-item>
+
+          <ion-img [src]="image" id="image-preview" ionError="Image not found"></ion-img>
+
+          <ion-button type="submit" expand="full" id="save-button">Save</ion-button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <section class="table-section">
+    <app-table-section></app-table-section>
+  </section>
 
 </ion-content>
